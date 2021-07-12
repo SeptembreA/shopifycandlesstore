@@ -1,0 +1,20 @@
+<div class="contact-header">
+  <h1>{{ page.title }}</h1>
+</div>
+
+<p>{{page.content}}</p>
+{% form 'contact' %}
+  {% if form.posted_successfully? %} Thank you for your contact {% endif %}
+  {{ form.errors | default_errors }}
+  <label for="ContactFormName">name</label>
+  <input type="text" id="ContactFormName" name="contact[name]">
+  <label for="ContactFormEmail">email</label>
+  <input type="email" id="ContactFormEmail" name="contact[email]">
+  <label for="ContactFormPhone">phone</label>
+  <input type="tel" id="ContactFormPhone" name="contact[phone]">
+  <label for="ContactFormMessage">tell us about the project</label>
+  <textarea rows="10" id="ContactFormMessage" name="contact[body]"></textarea>
+  <input type="submit" value="send">
+{% endform %}
+<p>1901 W Madison St, Chicago, IL</p>
+{% section 'map' %}

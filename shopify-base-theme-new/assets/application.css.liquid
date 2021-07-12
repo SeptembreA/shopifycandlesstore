@@ -1,0 +1,26 @@
+footer {
+    background-color: {{ settings.color_footer_bg }};
+}
+
+button {
+    color: {{ settings.color_accent }};
+}
+
+body {
+    color: {{ settings.color_body_text }};
+    background-color: {{ settings.color_main_bg }};
+}
+
+header {
+    display: flex;
+    justify-content: center;
+}
+
+footer {
+    text-align: center;
+    background-color: #ffcb0c;
+}
+
+.featured-collection, .contact-header {
+    background: url({{ 'candle-background.jpg' | asset_url }});
+}

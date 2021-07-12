@@ -1,0 +1,39 @@
+{% paginate collection.products by 4 %}
+  <h1>{{ collection.title }}</h1>
+
+  {% render 'sort-by' %}
+
+  {% for product in collection.products %}
+    <div>
+      <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
+      {{ product.price | money }}
+      {% unless product.available %}<br><strong>sold out</strong>{% endunless %}
+      <a href="{{ product.url | within: collection }}">
+        <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
+      </a>
+    </div>
+  {% else %}
+    <p>no matches</p>
+  {% endfor %}
+  {% if paginate.pages > 1 %}
+    {{ paginate | default_pagination }}
+  {% endif %}
+
+  {% if collection.all_tags.size > 0 %}
+  <h3>Filter by colour</h3>
+  <ul>
+    <!-- Then loop through the tags and display each -->
+    {% for tag in collection.all_tags %}
+    {% if current_tags contains tag %}
+    <li class="active collection_tag collection_tag__{{tag}}">
+      {{ tag | link_to_remove_tag: tag }}
+    </li>
+    {% else %}
+    <li class="collection_tag collection_tag__{{tag}}">
+      {{ tag | link_to_tag: tag }}
+    </li>
+    {% endif %}
+    {% endfor %}
+  </ul>
+  {% endif %}
+{% endpaginate %}

@@ -1,0 +1,24 @@
+<!-- HTML -->
+<div class="map">
+  {{section.settings.map}}
+</div>
+
+<!-- SCHEMA -->
+{% schema %}
+  {
+    "name": "Map",
+    "settings": [
+      {
+        "type": "html",
+        "id": "map",
+        "label": "Paste your Google Map embed code here"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Google Map",
+        "category": "Your map"
+      }
+    ]
+  }
+{% endschema %}

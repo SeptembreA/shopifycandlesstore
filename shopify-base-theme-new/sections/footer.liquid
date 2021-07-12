@@ -1,0 +1,60 @@
+<footer>
+    {%- assign footer_linklist = section.settings.footer_linklist -%}
+    {% if linklists[footer_linklist].links.size > 0 %}
+      <ul>
+        {% for link in linklists[footer_linklist].links %}
+          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    <img src="{{ section.settings.footer_logo | img_url: 'master' }}" alt="{{ section.settings.footer_logo.alt }}">
+
+      <div class="socialLinks">
+        {% for block in section.blocks %}
+          {% if block.type == "text" %}
+            <a href="{{block.settings.social_share_link}}">{{block.settings.font_awesome_icon}}</a>
+          {% endif %}
+        {% endfor %}
+      </div>
+  </footer>
+  
+  {% schema %}
+    {
+      "name": "Footer",
+      "class": "footerContainer",
+      "tag": "div",
+      "settings": [
+        {
+          "type": "link_list",
+          "id": "footer_linklist",
+          "label": "First menu",
+          "default": "footer"
+        },
+        {
+          "type": "image_picker",
+          "id": "footer_logo",
+          "label": "Upload your logo here."
+        }
+      ],
+      "blocks": [
+        {
+          "type": "text",
+          "name": "Social Links",
+          "settings": [
+            {
+              "type": "text",
+              "id": "font_awesome_icon",
+              "label": "Icon for Social share"
+            },
+            {
+              "type": "url",
+              "id": "social_share_link",
+              "label": "Social Media Link"
+            }
+          ]
+        }
+      ]
+    }
+  
+  {% endschema %}
